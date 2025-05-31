@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="container_section">
+  <h3 class="subtitle">CHECKOUT -> SHIPPING INFORMATION</h3>
+  <div class="container_shipping">
+
+<div class="container_shipping-inf">
+  <h3 class="subtitle">Delivery address:</h3>
+
+    <div class="wrapper_shipping-frm">
+         <form class="frm" action="{{url_for('checkout.get_shipping_information')}}" method="POST">
+      <div class="wrapper_inp">
+        {{ form_address.street( class="frm_inp") }}
+        {{ form_address.street.label( class="lb_inp" ) }}
+      </div>
+      <div class="wrapper_inp">
+        {{form_address.apartment( class="frm_inp")}}
+        {{form_address.apartment.label( class="lb_inp")}}
+      </div>
+      <div class="wrapper_inp">
+        {{ form_address.city( class="frm_inp") }}
+        {{ form_address.city.label(class="lb_inp") }}
+      </div>
+      <div class="wrapper_inp">
+        {{ form_address.county(class="frm_inp") }}
+        {{ form_address.county.label( class="lb_inp" ) }}
+      </div>
+      <div class="wrapper_inp">
+        {{ form_address.postcode( class="frm_inp") }}
+        {{ form_address.postcode.label( class="lb_inp" ) }}
+      </div>
+      <div class="wrapper_rb">
+        <i>* Please choose the delivery option</i>
+        {% for subfield in form_address.cost %}
+          <div class="rb__option-delivery">
+         {{ subfield (class="rb_delivery")}}
+            
+          {{ subfield.label}}: €{{ delivery_types[subfield.data].cost}}
+           <div>
+             Estimate arrival: {{ delivery_types[subfield.data].estimate_arrival.strftime("%A")}}
+           {{ delivery_types[subfield.data].estimate_arrival.strftime("%x")}}
+           </div>
+         </div>
+           {% endfor %}
+        </ul>
+      </div>
+      <div class="wrapper_inp">
+        <input class="btn_submit" type="submit" value="SAVE INFORMATION SHIPPING">
+      </div>
+    </form>
+    
+    
+</div>
+</div>
+
+  <div class="smr_order">
+     <div>
+      <table class="tb_smr-order item_order-tb">
+        <caption class="subtitle">Order details:</caption>
+        <tr>
+          <td>Product name</td>
+          <td>Quantity</td>
+          <td>Price</td>
+          <td>Subtotal</td>
+        </tr>
+      {% for key,value in session['shopping_cart'].items() %}
+      <tr>
+        <td>{{session['shopping_cart'][key]['name']}}</td>
+        <td>{{session['shopping_cart'][key]['quantity']}}</td>
+        <td>€{{session['shopping_cart'][key]['price']}}</td>
+        <td>€{{session['shopping_cart'][key]['quantity'] * session['shopping_cart'][key]['price'] }}</td>
+      </tr>
+      {% endfor %}
+      </table>
+    </div>
+  <table class="tb_smr-order">
+    <tr>
+      <td>Subtotal</td>
+      <td> € {{ session['total_cart']}}</td>
+    </tr>
+       <tr>
+      <td>Delivety charge</td>
+      <td>€ 0.0 </td>
+    </tr>
+      <tr>
+      <td>Total</td>
+      <td>€ {{ session['total_cart']}}</td>
+    </tr>
+  </table> 
+  </div>
+  </div>
+</section>
+
+{% endblock %}

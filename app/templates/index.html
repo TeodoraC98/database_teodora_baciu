@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %} 
+<div class="main">
+    <div class="container banner__home-page">
+        <div class="container_carousel">
+       <div class=" carousel carousel__home-page">
+        <div class="carousel-slide current_slide">    
+                    <img class="slide-img" src="./static/images/collection_banner-1.jpeg" alt="">
+        </div>
+        <div class="carousel-slide">
+                    <img class="slide-img" src="./static/images/collection_banner-2.jpg" alt="">
+             
+        </div>
+        <div class="carousel-slide">
+            <img class="slide-img" src="./static/images/collection_banner-3.jpg" alt="">
+        </div>
+        <div class="carousel-slide">
+            <img class="slide-img" src="./static/images/collection_banner-4.jpg" alt="">  
+        </div>
+        </div>
+        <div class="container-dots">
+        
+        </div>
+      </div>
+      <div class="wrapper_text-banner">
+        <h1 class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam </h1>
+            <div class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tempora neque nihil repellat, fugit corporis </div>
+      </div>
+    </div>
+  <section class="container_section section__suggestion">
+      <h3 class="subtitle">Our suggestion for you!</h3>
+    <div class="container_gallary" data-numar-items="6">
+      <i class="ri-arrow-left-double-fill gallary_sg-btn" id="prev"></i>
+    <i class="ri-arrow-right-double-line  gallary_sg-btn" id="next"></i>
+      <div  class="container_suggestion" >
+           {% for key,value in session['suggestion'].items()%}
+           <div class="gallary_item">
+            <a href="{{url_for('products.get_product_by_name',name = session['suggestion'][key]['name'])}}">
+            <img src="./static/{{session['suggestion'][key]['img_url']}}"
+            alt="   {{session['suggestion'][key]['name']}}">
+            </a>
+          </div>
+            {%endfor%}
+      </div>
+
+     </div>
+   </section>
+ </div>
+
+{% endblock %}

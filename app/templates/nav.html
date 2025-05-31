@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body>
+ <header class="header">
+    <div class="container__nav">
+    <div class="wrapper__nav">
+  <nav  class="data__menu ">
+
+    <div  class="nav__toggle" id="nav-toggle">
+        <i class="ri-menu-line toggle_menu" id="menu-open"></i>
+        <i class="ri-close-line toggle_menu" id="menu-close" data-id-toggle="#nav-toggle"></i> 
+             
+    </div>
+    <ul  class="data__menu-left ">
+        <li>
+
+            <a href="{{url_for('index')}}">Home</a>
+       </li> 
+       <li>
+
+        <a href="{{ url_for('about_us')}}">About Us</a>
+   </li> 
+        <li>
+                <a href="{{ url_for('user_account')}}">
+                    Account
+                </a>  
+            
+        </li>
+       <li>
+
+            <a href="#">New Collection</a>
+       </li> 
+       <li>
+        <div class="menu_left-products">
+            Our Bags
+          <div class="container__menu-products">
+    
+            <div class="product__item product__item-sholder-bag" id="item-sholder">
+                <a href="#">SHOLDERS BAGS
+               </a>
+          </div>
+            <div class="wrapper__menu-img" id="item_sholder-img">
+                <img src="./static/images/nav_sholder_bag-cp.jpg" alt=" Navigation image for sholder bag">
+            </div>
+            <div class="product__item product__item-handle-bag" id="item_handle-img">
+                <a href="#">HANDLES BAGS</a>
+            </div>
+            <div class="wrapper__menu-img" id="item_handle-img">
+                <img src="./static/images/nav_handle_bag-cp.jpg" alt="Navigation image for handle bag">
+            </div>
+            <div class="product__item product__item-backpack-bag" id="item-backpack">
+                <a href="#">BACKPACK</a>
+            </div>
+            <div class="wrapper__menu-img" id="item_backpack-img">
+                <img src="./static/images/nav_backpack-cp.jpg" alt="Navigation image for backpack bag">
+            </div>
+            <div class="product__item product__item-clutch-bag" id="item-backpack">
+                <a href="#">CLUTCH BAG</a>
+            </div>
+            <div class="wrapper__menu-img" id="item_clutch-img">
+                <img src="./static/images/nav_clutch-cp.jpg" alt="Navigation image for clutch bag">
+            </div>
+            <div class="wrapper__menu-img nav_cover-bag"  >
+               
+            </div>
+        
+          </div>
+        </div>
+       </li>
+        
+    </ul>
+
+ </nav>
+ <div class="company_logo">COMPANY NAME</div>
+ <nav  class="data__menu ">
+    <ul class="data__menu-right">
+      
+        <li>
+            <!-- <div class="menu__right-item  menu__right_item-bs item_card">Cart</div> -->
+            <i class="ri-shopping-bag-line menu__right-item menu__right_item-ss toggle_menu" data-id-toggle="#shopping-cart"></i>
+        </a>
+        <li>
+             <!-- <div class="menu__right-item  menu__right_item-bs item_wish_list">Wishlist</div> -->
+             <i class="ri-hearts-fill menu__right-item menu__right_item-ss toggle_menu" data-id-toggle="#shopping-wishlist"></i>
+        </li>
+    </ul>
+ </nav>
+    <div class="container__user-shopping-cart" id="shopping-cart">
+        <div>
+            <i class="ri-close-line close"  ></i>
+        </div>
+        <div>
+            <h1>cart</h1>
+        </div>
+    </div>
+    <div class="container__user-shopping-wishlist" id="shopping-wishlist">
+        <div>
+            <i class="ri-close-line close" ></i>
+        </div>
+        <div>
+            <h1>wishlist</h1>
+        </div>
+    </div>
+  </div>
+  </div>
+ </header>
+
+ <div class="main">
+    <div class="container banner__home-page">
+        <div class="container_carousel">
+       <div class=" carousel carousel__home-page">
+        <div class="carousel-slide current_slide">    
+                    <img class="slide-img" src="./static/images/collection_banner-1.jpeg" alt="">
+        </div>
+        <div class="carousel-slide">
+                    <img class="slide-img" src="./static/images/collection_banner-2.jpg" alt="">
+             
+        </div>
+        <div class="carousel-slide">
+            <img class="slide-img" src="./static/images/collection_banner-3.jpg" alt="">
+        </div>
+        <div class="carousel-slide">
+            <img class="slide-img" src="./static/images/collection_banner-4.jpg" alt="">  
+        </div>
+        </div>
+        <div class="container-dots">
+        
+        </div>
+      </div>
+      <div class="wrapper_text-banner">
+        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam </h1>
+            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tempora neque nihil repellat, fugit corporis </div>
+      </div>
+    </div>
+ </div>
+ <main>
+    <div class="container_main">
+   
+        <div class="wrapper_product-item">
+            <div class="wrapper_item-img">
+                <img src="./static/images/model_bg_ali.jpg" alt=" image Ali bag">
+                <div class="add-cart">
+                    <!-- <i class="ri-heart-add-fill"></i> -->
+                    <button class="btn_add-cart"><i class="ri-shopping-bag-fill"></i></button>
+                </div> 
+                <div class="add-favorite">
+                    <button class="btn_add-favorite"><i class="ri-heart-add-fill"></i></button>
+                </div>
+            </div>
+            <div class="item_name"> BAG ALI 100% NATURAL LEATHER</div> 
+            
+           <div class="item_price">$80.00</div> 
+        </div>
+        <div class="wrapper_product-item">
+            <div class="wrapper_item-img">
+                <img src="./static/images/model_bg_ali.jpg" alt=" image Ali bag">
+                <div class="add-cart">
+                    <!-- <i class="ri-heart-add-fill"></i> -->
+                    <button class="btn_add-cart"><i class="ri-shopping-bag-fill"></i></button>
+                </div> 
+                <div class="add-favorite">
+                    <button class="btn_add-favorite"><i class="ri-heart-add-fill"></i></button>
+                </div>
+            </div>
+            <div class="item_name"> BAG ALI 100% NATURAL LEATHER</div> 
+            
+           <div class="item_price">$80.00</div> 
+        </div>
+        <div class="wrapper_product-item">
+            <div class="wrapper_item-img">
+                <img src="./static/images/model_bg_ali.jpg" alt=" image Ali bag">
+                <div class="add-cart">
+                    <!-- <i class="ri-heart-add-fill"></i> -->
+                    <button class="btn_add-cart"><i class="ri-shopping-bag-fill"></i></button>
+                </div> 
+                <div class="add-favorite">
+                    <button class="btn_add-favorite"><i class="ri-heart-add-fill"></i></button>
+                </div>
+            </div>
+            <div class="item_name"> BAG ALI 100% NATURAL LEATHER</div> 
+            
+           <div class="item_price">$80.00</div> 
+        </div>
+        <div class="wrapper_product-item">
+            <div class="wrapper_item-img">
+                <img src="./static/images/model_bg_ali.jpg" alt=" image Ali bag">
+                <div class="add-cart">
+                    <!-- <i class="ri-heart-add-fill"></i> -->
+                    <button class="btn_add-cart"><i class="ri-shopping-bag-fill"></i></button>
+                </div> 
+                <div class="add-favorite">
+                    <button class="btn_add-favorite"><i class="ri-heart-add-fill"></i></button>
+                </div>
+            </div>
+            <div class="item_name"> BAG ALI 100% NATURAL LEATHER</div> 
+            
+           <div class="item_price">$80.00</div> 
+        </div>
+        <div class="wrapper_product-item">
+            <div class="wrapper_item-img">
+                <img src="./static/images/model_bg_ali.jpg" alt=" image Ali bag">
+                <div class="add-cart">
+                    <!-- <i class="ri-heart-add-fill"></i> -->
+                    <button class="btn_add-cart"><i class="ri-shopping-bag-fill"></i></button>
+                </div> 
+                <div class="add-favorite">
+                    <button class="btn_add-favorite"><i class="ri-heart-add-fill"></i></button>
+                </div>
+            </div>
+            <div class="item_name"> BAG ALI 100% NATURAL LEATHER</div> 
+            
+           <div class="item_price">$80.00</div> 
+        </div>
+        <div class="wrapper_product-item">
+            <div class="wrapper_item-img">
+                <img src="./static/images/model_bg_ali.jpg" alt=" image Ali bag">
+                <div class="add-cart">
+                    <!-- <i class="ri-heart-add-fill"></i> -->
+                    <button class="btn_add-cart"><i class="ri-shopping-bag-fill"></i></button>
+                </div> 
+                <div class="add-favorite">
+                    <button class="btn_add-favorite"><i class="ri-heart-add-fill"></i></button>
+                </div>
+            </div>
+            <div class="item_name"> BAG ALI 100% NATURAL LEATHER</div> 
+            
+           <div class="item_price">$80.00</div> 
+        </div>
+        <div class="wrapper_product-item">
+            <div class="wrapper_item-img">
+                <img src="./static/images/model_bg_ali.jpg" alt=" image Ali bag">
+                <div class="add-cart">
+                    <!-- <i class="ri-heart-add-fill"></i> -->
+                    <button class="btn_add-cart"><i class="ri-shopping-bag-fill"></i></button>
+                </div> 
+                <div class="add-favorite">
+                    <button class="btn_add-favorite"><i class="ri-heart-add-fill"></i></button>
+                </div>
+            </div>
+            <div class="item_name"> BAG ALI 100% NATURAL LEATHER</div> 
+            
+           <div class="item_price">$80.00</div> 
+        </div>
+        <div class="wrapper_product-item">
+            <div class="wrapper_item-img">
+                <img src="./static/images/model_bg_ali.jpg" alt=" image Ali bag">
+                <div class="add-cart">
+                    <!-- <i class="ri-heart-add-fill"></i> -->
+                    <button class="btn_add-cart"><i class="ri-shopping-bag-fill"></i></button>
+                </div> 
+                <div class="add-favorite">
+                    <button class="btn_add-favorite"><i class="ri-heart-add-fill"></i></button>
+                </div>
+            </div>
+            <div class="item_name"> BAG ALI 100% NATURAL LEATHER</div> 
+            
+           <div class="item_price">$80.00</div> 
+        </div>
+        <div class="wrapper_product-item">
+            <div class="wrapper_item-img">
+                <img src="./static/images/model_bg_ali.jpg" alt=" image Ali bag">
+                <div class="add-cart">
+                    <!-- <i class="ri-heart-add-fill"></i> -->
+                    <button class="btn_add-cart"><i class="ri-shopping-bag-fill"></i></button>
+                </div> 
+                <div class="add-favorite">
+                    <button class="btn_add-favorite"><i class="ri-heart-add-fill"></i></button>
+                </div>
+            </div>
+            <div class="item_name"> BAG ALI 100% NATURAL LEATHER</div> 
+            
+           <div class="item_price">$80.00</div> 
+        </div>
+
+    </div>
+ </main>
+</body>
+<script src="./static/js/show_nav.js"></script>
+<script src="./static/js/carousel.js"></script>
+</html>

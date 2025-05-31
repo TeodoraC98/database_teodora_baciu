@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="container_section">
+  <h3 class="subtitle">Checkout -> Payment details</h3>
+  <div class="container_payment-inf">
+ 
+    <table class="tb_delivery-data">
+      <caption class="subtitle">Delivery information:</caption>
+      <tr>
+        <td>Address</td>
+        <td>{{ delivery.street }}, {{delivery.postcode}} ,{{delivery.city }}</td>
+      </tr>
+      <tr>
+        <td>Estimate arrival</td>
+        <td>{{delivery.estimate_arrival.strftime("%A") }}  {{delivery.estimate_arrival.strftime("%x")}}</td>
+      </tr>
+    </table>
+
+  
+         <table class="tb_smr-order">
+    <tr>
+      <td>Subtotal</td>
+      <td> € {{ session['total_cart']}}</td>
+    </tr>
+       <tr>
+      <td>Delivety charge</td>
+      <td>€ {{delivery.cost}} </td>
+    </tr>
+      <tr>
+      <td>Total</td>
+      <td>€ {{ session['total_cart']}}</td>
+    </tr>
+  </table> 
+ 
+ 
+     <form class="frm" action="{{url_for('checkout.get_payment_information')}}" method="post">
+        
+        <input  class="btn_submit" type="submit" value="MAKE A PAYMENT">
+      
+    </form>
+
+</div>
+{% endblock %}

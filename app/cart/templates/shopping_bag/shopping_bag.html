@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %} 
+{% if 'shopping_cart' in session%}
+<section class="container_section section__cart">
+  <h3 class="subtitle">Welcome to your shopping bag!</h3>
+  <div class="container_cart">
+<div class="wrapper_shopping-cart">
+  
+   {% for key, value in session['shopping_cart'].items() %}
+   <div class="item-cart">
+      <div class="itm_crt-img">
+         <img src=" {{ url_for('static', filename=session['shopping_cart'][key]['img_url'])}}" alt=" {{ session['shopping_cart'][key]['img_url']}}">
+      </div>
+      <div class="itm_crt-name" >{{session['shopping_cart'][key]['name']}} bag</div>
+      <div class="itm_crt-price" >€{{session['shopping_cart'][key]['price']}}</div>
+      <div class="itm_crt-quantity">
+        <div>
+          <form action="/cart/decrease_qt" method="post">
+         <input type="hidden" value="{{key}}" name="decrease_qt_btn">
+         <input  class="btn_qt" type="submit" value="  - ">
+      </form></div>
+        <div> {{session['shopping_cart'][key]['quantity']}}</div>
+        <div>
+         <form action="/cart/add_qt" method="post">
+            <input type="hidden" value="{{key}}" name="add_qt_btn">
+            <input class="btn_qt" type="submit" value=" + ">
+         </form>
+        </div>
+      </div>
+      <div class="itm_crt-subtotal">Subtotal: $ {{session['shopping_cart'][key]['price'] * session['shopping_cart'][key]['quantity'] }}</div>
+      <div class="itm_crt-delete">
+         <a href="{{ url_for('cart.delete_item_cart', id=session['shopping_cart'][key]['id'])}}"><i class="ri-close-line"></i></a>
+      </div>
+   </div>
+   {% endfor%}
+</div>
+
+<div class="smr_order">
+  <table class="tb_smr-order">
+    <tr>
+      <td>Subtotal</td>
+      <td> € {{ session['total_cart']}}</td>
+    </tr>
+       <tr>
+      <td>Delivety charge</td>
+      <td>€ 0.0 </td>
+    </tr>
+      <tr>
+      <td>Total</td>
+      <td>€ {{ session['total_cart']}}</td>
+    </tr>
+  </table> 
+
+ <div>
+   <form action="{{url_for('checkout.get_shipping_information')}}">
+        <input class="btn_submit" type="submit" value="Checkout">
+   </form>
+ </div>
+</div>
+</div>
+</section>
+
+{% else %}
+   <section class="container_section section__empty-cart">
+      <div>Your shopping bag is <strong>empty</strong></div>
+   </section>
+   {% if 'suggestion' in session%}
+  <section class="container_section section__suggestion">
+      <h3 class="subtitle">Our suggestion for you!</h3>
+    <div class="container_gallary" data-numar-items="6">
+      <i class="ri-arrow-left-double-fill gallary_sg-btn" id="prev"></i>
+    <i class="ri-arrow-right-double-line  gallary_sg-btn" id="next"></i>
+      <div  class="container_suggestion" >
+           {% for key,value in session['suggestion'].items()%}
+           <div class="gallary_item">
+            <a href="{{url_for('products.get_product_by_name',name = session['suggestion'][key]['name'])}}">
+            <img src=" {{ url_for('static', filename=session['suggestion'][key]['img_url'])}}"
+            alt="   {{session['suggestion'][key]['name']}}">
+            </a>
+          </div>
+            {%endfor%}
+      </div>
+     </div>
+   </section>
+   {% endif %}
+{% endif %}
+{% endblock %}

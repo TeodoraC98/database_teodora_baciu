@@ -1,0 +1,66 @@
+{% extends "base.html" %} 
+
+ {% block content %} 
+<section class="container_section">
+<div class="subtitle"> Order ->   {{invoice.order_number}} </div>
+ 
+   <div>
+    {% if invoice.items|length > 4 %}
+     <div class="container_gallary" data-numar-items="6">
+      <i class="ri-arrow-left-double-fill gallary_sg-btn" id="prev"></i>
+    <i class="ri-arrow-right-double-line  gallary_sg-btn" id="next"></i>
+      <div  class="container_suggestion" >
+           {% for item in invoice.items %}
+           <div class="gallary_item">
+            <div>{{item.product.name}}</div>
+            <img src="{{ url_for('static',filename=item.product.img_url)}}"
+            alt="{{item.product.name}}">
+          </div>
+            {%endfor%}
+      </div>
+     </div>
+     {% else %}
+     <div >
+        <ul class="gallery__invoice-item">
+              {% for item in invoice.items %}
+            <li>
+            <div>{{item.product.name}}</div>
+            <img src="{{ url_for('static',filename=item.product.img_url)}}"
+            alt="{{item.product.name}}">
+            </li>
+            {% endfor %}
+        </ul>
+     </div>
+     {% endif %}
+   </div>
+    <table class="tb_delivery-data">
+      <caption class="subtitle">Delivery information:</caption>
+      <tr>
+        <td>Address</td>
+        <td>{{ invoice_details.address.street }}, {{invoice_details.address.postcode}} ,{{invoice_details.address.city }}</td>
+      </tr>
+      <tr>
+        <td>Estimate arrival</td>
+        <td>{{invoice_details.address.estimate_arrival.strftime("%A") }}  {{invoice_details.address.estimate_arrival.strftime("%x")}}</td>
+      </tr>
+    </table>
+         <div>
+      <table class="tb_smr-order item_order-tb">
+        <caption class="subtitle">Order details:</caption>
+        <tr>
+          <td>Product name</td>
+          <td>Quantity</td>
+          <td>Price</td>
+          <td>Subtotal</td>
+        </tr>
+      {% for item in invoice.items %}
+      <tr>
+        <td>{{item.product.name}}</td>
+        <td>{{item.quantity}}</td>
+        <td>€{{item.product.price}}</td>
+        <td>€{{item.quantity * item.product.price }}</td>
+      </tr>
+      {% endfor %}
+      </table>
+</section>
+{% endblock %}

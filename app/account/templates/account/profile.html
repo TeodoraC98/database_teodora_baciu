@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %} 
+<section class="container_section">
+    <h2 class="subtitle">  Welcome {{current_user.first_name}} </h2>
+<div>Do you want to <a href="{{url_for('account.logout')}}"><i>log out</i></a></div>
+<div >
+
+</div>
+</section>
+<section class="container_section">
+    <div>For more information about your order, please select the order number!</div>
+<div class="subtitle">Your orders!</div>
+    {%for invoice in list_invoices %}
+   <div>
+  <a href="{{url_for('orders.get_invoice_by_order_number', order_number = invoice.order_number)}}">
+    {{invoice.order_number}}
+
+  </a>
+      </table>
+         <div>
+      <table class="tb_smr-order item_order-tb">
+        <caption class="subtitle">
+            <a href="{{url_for('orders.get_invoice_by_order_number', order_number = invoice.order_number)}}">
+             Order number -> {{invoice.order_number}}
+            </a>
+        </caption>
+        <tr>
+          <td>Date</td>
+          <td>Status</td>
+          <td>Amount</td>
+        </tr>
+
+      <tr>
+        <td>{{invoice.date.strftime("%A")}} {{invoice.date.strftime("%x")}}</td>
+        <td>{{invoice.status}}</td>
+        <td>€{{invoice.amount}}</td>
+      </tr>
+      </table>
+   </div>
+     {% endfor %}
+</section>
+{% endblock %}

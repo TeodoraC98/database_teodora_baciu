@@ -1,0 +1,83 @@
+{% extends "base.html" %} 
+
+ {% block content %} 
+ <div class="container_create-acc">
+    <div class="wrp_cover-acc">
+        <h2 class="subtitle">WELCOME TO MALA!</h2>
+    </div>
+    <div class="wrapper_acc-frm">
+            <button class="toggle_frm" id="btn_log-in" data-id-frm="frm_log-in">LOG IN</button>
+            <button class="toggle_frm" id="btn_create-acc" data-id-frm="frm_create-acc" >CREATE ACCOUNT</button>
+        <form class="frm_container frm_acc {{class_frm_reg}}" id="frm_create-acc" method="POST" action="/account/register">
+            <div class="wrapper_inp">
+              {{ formReg.name( class="create_acc-inp frm_inp") }}
+              {{ formReg.name.label( class="lb_inp")}}
+                <i class="ri-error-warning-line err_date-validation"></i>
+              </div>
+              <div class="wrapper_inp">
+                {{  formReg.surname( class="create_acc-inp frm_inp") }}
+                {{ formReg.surname.label( class="lb_inp")}}
+            <i class="ri-error-warning-line err_date-validation"></i>
+           </div>
+           <div class="wrapper_inp">
+            {{  formReg.email( class="create_acc-inp frm_inp") }}
+            {{  formReg.email.label( class="lb_inp")}}
+            <i class="ri-error-warning-line err_date-validation"></i>
+           </div>
+           <div class="wrapper_inp">
+            {{  formReg.phone( class="create_acc-inp frm_inp") }}
+            {{  formReg.phone.label( class="lb_inp")}}
+            <i class="ri-error-warning-line err_date-validation"></i>
+           </div>
+            <div class="wrapper_inp">
+            {{  formReg.password( class="create_acc-inp frm_inp") }}
+            {{  formReg.password.label( class="lb_inp")}}
+            <i class="ri-error-warning-line err_date-validation"></i>
+           </div>
+           <div class="wrapper_inp">
+            {{  formReg.confirm_password( class="create_acc-inp frm_inp") }}
+            {{  formReg.confirm_password.label( class="lb_inp")}}
+            <i class="ri-error-warning-line err_date-validation"></i>
+           </div>
+           <div class="wrapper_inp">
+            {{ formReg.accept_term(class="create_acc-inp frm_inp") }}
+            {{  formReg.accept_term.label(class="lb_cb_term")}}
+            </div>
+            <div>
+              {{ formReg.submit(class="wrapp_btn")}}
+            </div>
+            <!-- {% with messages = get_flashed_messages() %}
+            {% if messages %} 
+            <ul> {% for message in messages %}
+           <li>{{ message }}</li> 
+           {% endfor %} 
+             </ul> 
+            {% endif %} {% endwith %} -->
+           </form>
+        <form class="frm_container {{ class_frm_log }}" id="frm_log-in" action="" method="post" >
+            <div class="wrapper_inp">
+                {{  formLogin.email( class="create_acc-inp frm_inp") }}
+                {{ formLogin.email.label( class="lb_inp")}}
+                <i class="ri-error-warning-line err_date-validation"></i>
+              </div>
+              <div class="wrapper_inp">
+                {{  formLogin.password(class="create_acc-inp frm_inp") }}
+                {{  formLogin.password.label( class="lb_inp") }}
+                <i class="ri-error-warning-line err_date-validation"></i>
+              </div>
+              <!-- {% with messages = get_flashed_messages() %}
+              {% if messages %} 
+              <ul> {% for message in messages %}
+             <li>{{ message }}</li> 
+             {% endfor %} 
+               </ul> 
+              {% endif %} {% endwith %} -->
+              
+                {{  formLogin.submit(class="btn_submit") }}
+        
+        </form>
+        </div>
+        </div>
+
+
+ {% endblock %}

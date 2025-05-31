@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Document</title> -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+      <link rel="stylesheet"  type="text/css" href="{{ url_for('static', filename='css/style.css') }}">  
+</head>
+<body>
+    <header class="header">
+        <div class="container__nav">
+        <div class="wrapper__nav">
+      <nav  class="data__menu left-menu">
+    
+        <div  class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line toggle_menu" id="menu-open"></i>
+            <i class="ri-close-line toggle_menu" id="menu-close" data-id-toggle="#nav-toggle"></i> 
+                 
+        </div>
+        <ul  class="data__menu-left ">
+            <li>
+    
+                <a class="link" href="{{url_for('index')}}">
+                    Home
+                </a>
+           </li> 
+            <li>
+                <a class="link" href="{{ url_for('account.login')}}">
+                     Account
+                </a>  
+                
+            </li>
+           <li>
+            <div class="menu_left-products link">
+                Our Bags
+              <div class="container__menu-products">
+        
+                <div class="product__item product__item-sholder-bag" id="item-sholder">
+                    <a class="link" href="{{ url_for('products.get_products_by_type',type='sholder')}}">SHOLDERS BAGS
+                   </a>
+              </div>
+                <div class="wrapper__menu-img" id="item_sholder-img">
+                    <img src="{{url_for('static', filename='images/nav_sholder_bag-cp.jpg')}}" alt=" Navigation image for sholder bag">
+                </div>
+                <div class="product__item product__item-handle-bag" id="item_handle-img">
+                    <a class="link" href="{{ url_for('products.get_products_by_type',type='handle')}}">HANDLES BAGS</a>
+                </div>
+                <div class="wrapper__menu-img" id="item_handle-img">
+                    <img src="{{url_for('static', filename='images/nav_handle_bag-cp.jpg')}}" alt="Navigation image for handle bag">
+                </div>
+            
+                <div class="product__item product__item-clutch-bag" id="item-backpack">
+                    <a class="link" href="{{ url_for('products.get_products_by_type',type = 'clutch')}}">CLUTCH BAG</a>
+                </div>
+                <div class="wrapper__menu-img" id="item_clutch-img">
+                    <img src="{{url_for('static', filename='images/nav_clutch-cp.jpg')}}" alt="Navigation image for clutch bag">
+                </div>
+                <div class="wrapper__menu-img nav_cover-bag"  >
+                   
+                </div>
+            
+              </div>
+            </div>
+           </li>
+            
+        </ul>
+    
+     </nav>
+     <div class="company_logo">MALA</div>
+     <nav  class="data__menu right-menu">
+        <ul class="data__menu-right">
+          
+            <li>
+                <a href="{{ url_for('cart.cart')}}">
+                    <i class="ri-shopping-bag-line menu__right-item menu__right_item-ss" ></i>
+                </a>  
+            </a>
+        </ul>
+     </nav>
+
+      </div>
+      </div>
+     </header>
+ 
+ {% block content %}
+    
+ {% endblock %} 
+
+
+  <script src="{{url_for('static',filename='js/showFormAcc.js')}}"></script>
+ <script src="/static/js/show_nav.js"></script>
+ <script src="{{url_for('static',filename='js/gallarySuggestion.js')}}"></script>
+</body>
+</html>
