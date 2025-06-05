@@ -12,6 +12,5 @@ Base.query = db_session.query_property()
 
 def init_db():
   import app.models
-  from app.models.products import insert_category
   Base.metadata.create_all(bind=engine)
-  # insert_category()
+

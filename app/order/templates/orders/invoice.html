@@ -6,7 +6,7 @@
  
    <div>
     {% if invoice.items|length > 4 %}
-     <div class="container_gallary" data-numar-items="6">
+     <div class="container_gallary" data-nr-items="6">
       <i class="ri-arrow-left-double-fill gallary_sg-btn" id="prev"></i>
     <i class="ri-arrow-right-double-line  gallary_sg-btn" id="next"></i>
       <div  class="container_suggestion" >
@@ -33,6 +33,7 @@
      </div>
      {% endif %}
    </div>
+    <div>
     <table class="tb_delivery-data">
       <caption class="subtitle">Delivery information:</caption>
       <tr>
@@ -43,7 +44,12 @@
         <td>Estimate arrival</td>
         <td>{{invoice_details.address.estimate_arrival.strftime("%A") }}  {{invoice_details.address.estimate_arrival.strftime("%x")}}</td>
       </tr>
+      <tr>
+        <td>Delivery cost</td>
+        <td>€{{invoice_details.address.cost }} </td>
+      </tr>
     </table>
+    </div>
          <div>
       <table class="tb_smr-order item_order-tb">
         <caption class="subtitle">Order details:</caption>
@@ -62,5 +68,23 @@
       </tr>
       {% endfor %}
       </table>
+       </div>
+       <div>
+       <table class="tb_payment-info">
+      <caption class="subtitle">Payment information:</caption>
+      <tr>
+        <td>Date</td>
+        <td>Amount</td>
+        <td>Status</td>
+        <td>Type</td>
+      </tr>
+      <tr>
+        <td>{{invoice_details.payment.date.strftime("%A") }} {{invoice_details.payment.date.strftime("%x")}}</td>
+       <td> €{{ invoice_details.payment.amount }}</td>
+       <td> {{ invoice_details.payment.status }}</td>
+       <td> {{ invoice_details.payment.type }}</td>
+      </tr>
+      </table>
+  </div>
 </section>
 {% endblock %}

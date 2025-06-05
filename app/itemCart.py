@@ -10,7 +10,7 @@ class ItemCart:
     def __str__(self):                            
      return f"{self.id}({self.name})"
     
-    def jsonfy(self):
+    def to_dict(self):
        return{
           'id':self.id,
           'name':self.name,

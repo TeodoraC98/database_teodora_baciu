@@ -4,6 +4,9 @@ from flask_login import UserMixin
 from sqlalchemy import Column, Integer,String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from app.database import Base, db_session
+    
+    # the relationship between User and Invoice is one-to-many 
+    # the Invoice is referencing the User through the  foreign key id_user
 class User(UserMixin, Base):
     __tablename__= 'users'
 

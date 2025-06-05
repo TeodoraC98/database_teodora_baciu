@@ -4,7 +4,9 @@ from sqlalchemy.orm import relationship
 from app.models.orders import Item_Order
 
 from app.database import Base, db_session
-    
+
+    # the relationship between Category_Product and Product  is one-to-many
+    # the Product is referencing the Category_product through the  foreign key id_category
 class Category_Product(Base):
     __tablename__='category_product'
 
@@ -48,6 +50,9 @@ class Category_Product(Base):
     def get_category(category_name):
         category=Category_Product.query.filter(Category_Product.category_name == category_name).first()
         return category
+    
+    # the relationship between Product and ItemCart is one-to-one  
+    # the ItemCart is referencing the Product through the  foreign key id_product
 
 class Product(Base):
     __tablename__='products'
@@ -89,66 +94,5 @@ class Product(Base):
         db_session.commit()
         return True
     
-    
-    # @validates('quantity')
-    # def check_quantity(self, key, product_quantity):
-    #     if product_quantity < 0:
-    #         raise ValueError('Product quantity cannot be less than 0')
-    #     return product_quantity
-      
-def insert_list_product(list):
-    db_session.add_all(list)
-    db_session.commit()
-    return True
-
-# creating instance of product for sholder bags
-pr_sh_1=Product("Ali",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",85,'images/model_sh_ali.jpg')
-pr_sh_2=Product("Amy",160,"Lorem ipsum dolor sit amet consectetur adipisicing elit",105,'images/model_sh_amy.jpg')
-pr_sh_3=Product("Mara",430,"Lorem ipsum dolor sit amet consectetur adipisicing elit",125,'images/model_sh_mara.jpg')
-pr_sh_4=Product("Diana",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",115,'images/model_sh_diana.jpg')
-pr_sh_5=Product("Emily",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",90,'images/model_sh_emily.jpg')
-pr_sh_6=Product("Emma",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",110,'images/model_sh_emma.jpg')
-pr_sh_7=Product("Evelin",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",130,'images/model_sh_evelin.jpg')
-pr_sh_8=Product("Mona",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",200,'images/model_sh_mona.jpg')
-pr_sh_9=Product("Ruth",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",210,'images/model_sh_ruth.jpg')
-pr_sh_10=Product("Theo",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",195,'images/model_sh_theo.jpg')
-pr_sh_11=Product("Tiffany",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",285,'images/model_sh_tiffany.jpg')
-
-list_sholder_bgs=[pr_sh_1,pr_sh_2,pr_sh_3,pr_sh_4,pr_sh_5,pr_sh_6,pr_sh_7,pr_sh_8,pr_sh_9,pr_sh_10,pr_sh_11]
-# creating instance of product for handle bags
-pr_hd_1=Product("Ciara",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",85,'images/model_hd_ciara.jpg')
-pr_hd_2=Product("Elena",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",125,'images/model_hd_elena.jpg')
-pr_hd_3=Product("Cora",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",235,'images/model_hd_cora.jpg')
-pr_hd_4=Product("Martina",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",115,'images/model_hd_martina.jpg')
-pr_hd_5=Product("Rose",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",145,'images/model_hd_rose.jpg')
-pr_hd_6=Product("Silvia",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",85,'images/model_hd_silvia.jpg')
-list_handle_bgs=[pr_hd_1,pr_hd_2,pr_hd_3,pr_hd_4,pr_hd_5,pr_hd_6]
-
-# creating instance of product for  bags clutch
-pr_ch_1=Product("Aurora",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",125,'images/model_ch_aurora.jpg')
-pr_ch_2=Product("Mary",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",140,'images/model_ch_mary.jpg')
-pr_ch_3=Product("Mina",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",155,'images/model_ch_mina.jpg')
-pr_ch_4=Product("Monica",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",200,'images/model_ch_monica.jpg')
-pr_ch_5=Product("Rachel",100,"Lorem ipsum dolor sit amet consectetur adipisicing elit",200,'images/model_ch_rachel.jpg')
-list_clutch_bgs=[pr_ch_1,pr_ch_2,pr_ch_3,pr_ch_4,pr_ch_5]
-
-# creating instance of category for each type of bag
-category_Product1=Category_Product("handle"," Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit mollitia voluptas consequatur " \
-"voluptatibus a architecto, aut delectus ducimus magnam corporis impedit eum debitis doloremque odio",list_handle_bgs)
-category_Product2=Category_Product("clutch"," Lorem ipsum dolor sit amet consectetur adipisicing elit. " \
-"Velit mollitia voluptas consequatur voluptatibus a architecto, aut delectus ducimus magnam corporis impedit eum debitis doloremque odio",list_clutch_bgs)
-category_Product3=Category_Product("sholder"," Lorem ipsum dolor sit amet consectetur adipisicing elit." \
-" Velit mollitia voluptas consequatur voluptatibus a architecto, aut delectus ducimus magnam corporis impedit eum debitis doloremque odio",list_sholder_bgs)
-
-list_category=[category_Product1,category_Product2, category_Product3]
-
-def insert_category():
-    for category in list_category:
-        stm=category.register_category()
-        if stm:
-            stm_pr=insert_list_product(category.products)
- 
-
-
 
 

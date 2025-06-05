@@ -78,10 +78,6 @@ def get_payment_information():
 
 @checkout_bp.route('/order/success')
 def success():
-   #  payment = order['payment'] 
-   #  Payment.update_status_db(payment,'success')
-   #  invoice = order['invoice']
-   #  invoice.update_status_db('success')
     Payment.update_status_db(order['payment'] ,"success")
     Invoice.update_status_db(order['invoice'],"success")
     session.clear()

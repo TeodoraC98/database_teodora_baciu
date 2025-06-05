@@ -5,6 +5,12 @@ from datetime import datetime,timezone
 from app.models.payments import Payment
 from app.models.address import Address_Shipping
 
+# Item_Order instances represent the item of each product in the cart
+# the relationship between Product and Item_Order  is one-to-one 
+# the Item_Order is referencing the Product through the  foreign key id_product
+
+# the relationship between Invoice and Item_Order  is one-to-many 
+# the Item_Order is referencing the Invoice through the  foreign key id_order
 class Item_Order(Base):
     __tablename__='items'
     id=Column(Integer,primary_key=True, autoincrement=True)
@@ -74,9 +80,13 @@ class Invoice(Base):
         }
      
     def insert_invoice_db(self):
-        db_session.add(self)
-        db_session.commit()
-        return True
+        try:
+          db_session.add(self)
+          db_session.commit()
+          return True
+        except Exception as e:
+            print(e)
+       
     
     def update_status_db(self,status):
         try:
@@ -84,13 +94,14 @@ class Invoice(Base):
           db_session.commit()
         except Exception as e:
             print(e)
+
     def get_list_invoice_by_user(id_user):
         try:
          list_invoice = Invoice.query.filter(Invoice.id_user == id_user).all()
          return list_invoice
         except Exception as e:
             print(e)
-    
+    # each invoice has an unique number, that can be used for making a select
     def get_invoice_by_number(self):
         try:
          invoice = Invoice.query.filter(Invoice.order_number == self.order_number).first()
@@ -98,6 +109,16 @@ class Invoice(Base):
         except Exception as e:
             print(e)
     
+    # I use the Invoice_Details class to make it easier to access data such as: payment, address and invoice
+# the relationship between Invoice_Details and Invoice  is one-to-one 
+# the Invoice_Details is referencing the Invoice through the  foreign key id_invoice
+
+# the relationship between Invoice_Details and Payment  is one-to-one 
+# the Invoice_Details is referencing the Payment through the  foreign key id_paymemnt
+
+# the relationship between Invoice_Details and Address  is one-to-one 
+# the Invoice_Details is referencing the Address through the  foreign key id_address
+
 class Invoice_Details(Base):
     __tablename__='invoice_details'
     id=Column(Integer,primary_key=True,nullable=False, autoincrement=True)
@@ -107,6 +128,12 @@ class Invoice_Details(Base):
     invoice=relationship("Invoice",back_populates='invoice_details')
     payment=relationship("Payment",back_populates='invoice_details')
     address=relationship("Address_Shipping",back_populates='invoice_details')
+     
+    def __init__(self,id_invoice,id_payment,id_address):
+        self.id_invoice=id_invoice
+        self.id_payment=id_payment
+        self.id_address=id_address
+
     def to_dict(self):
         return{
             "id":self.id,
@@ -136,6 +163,7 @@ class Invoice_Details(Base):
          return invoice_delails
         except Exception as e:
             print(e)
+
     def get_invoice_details_by_id_invoice(id_invoice):
         try:
          invoice_delails = Invoice_Details.query.filter(Invoice_Details.id_invoice == id_invoice).first()
@@ -144,12 +172,14 @@ class Invoice_Details(Base):
             print(e)
             
     
-    def __init__(self,id_invoice,id_payment,id_address):
-        self.id_invoice=id_invoice
-        self.id_payment=id_payment
-        self.id_address=id_address
+
     
     def insert_invoice_details(self):
-        db_session.add(self)
-        db_session.commit()
-        return True
+        try:
+         db_session.add(self)
+         db_session.commit()
+         return True
+        except Exception as e:
+            print(e)
+            
+    

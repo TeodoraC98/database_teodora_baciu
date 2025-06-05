@@ -1,7 +1,8 @@
 {% extends "base.html" %} 
 
  {% block content %} 
- <div class="container_products">
+<main>
+    <div class="container_products">
     {% for item in bags %}
   
    <div class="wrapper_product-item">
@@ -16,9 +17,8 @@
                   <input type="hidden" value="{{item.img_url}}" name="urlImg_item">
                   <input type="hidden" value="{{item.price}}" name="price_item">
                   <input type="hidden" value="1" name="quantity">
-                  <input type="submit" value="Buy"></input>
-               <!-- <i class="ri-shopping-bag-fill btn_add-cart"> -->
-  
+                  <input type="hidden" value="2" name="ceva">
+                  <input type="submit" value="Buy">
                </form>
               
           </div> 
@@ -29,4 +29,5 @@
   </div>
   {% endfor%}
   </div>
+</main>
  {% endblock%}

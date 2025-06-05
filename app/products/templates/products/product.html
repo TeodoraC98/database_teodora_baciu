@@ -2,7 +2,8 @@
 
  {% block content %} 
 
-     <div class="container_display-product">
+    <main>
+         <div class="container_display-product">
         <div class="wrapper_img-product">
             <img src="{{ url_for('static', filename = product.img_url)}}">
         </div>
@@ -19,11 +20,11 @@
                   <input type="hidden" value="{{product.img_url}}" name="urlImg_item">
                   <input type="hidden" value="{{product.price}}" name="price_item">
                   <input type="hidden" value="1" name="quantity">
+                  <input type="hidden" value="{{product}}" name="product">
                   <input id="btn_buy" type="submit" value="Buy">
-               <!-- <i class="ri-shopping-bag-fill btn_add-cart"> -->
-  
                </form>
             </div>
         </div>
      </div>
+    </main>
  {% endblock %}

@@ -34,9 +34,14 @@ class Address_Shipping(Base):
         }
              
     def insert_address(self):
-        db_session.add(self)
-        db_session.commit()
-        return self.id
+        try:
+           db_session.add(self)
+           db_session.commit()
+           return self.id
+        except Exception as e:
+            print(e)
+    
+
     
     def get_address_by_id(self):
         try:
@@ -45,25 +50,29 @@ class Address_Shipping(Base):
         except Exception as e:
             print(e)
     
-
+# Delivery_Type defined the 3 instance of delivery options: free, standard and express
+# each option has a different cost and the estimated delivery date is different
+# I'm using Delivery_Type class to set the cost, and estimate_delivery based on user's choice
 class Delivery_Type:
     def __init__(self,cost):
        self.cost=cost
        self.estimate_arrival=datetime.now(timezone.utc)
-    
+
+   # the function determines the estimated delivery day of the order based on the type of the delivery
     def set_estimate_delivery(self,delivery_time):
         current_date = datetime.now(timezone.utc)
+        # the delivery_time is different depending  on the  Delivery_Type
         estimate_devilery = current_date  + timedelta(delivery_time)
+        # if the estimate_devilery is the week day, then is set as estimate_devilery
         if estimate_devilery.weekday() <=4:
            self.estimate_arrival=estimate_devilery
         elif estimate_devilery.weekday() == 5:
+        #    if estimate_devilery is a Friday, the estimate_devilery is set to be the next Monday
            estimate_devilery = estimate_devilery  + timedelta(2)
            self.estimate_arrival=estimate_devilery
         else:
            estimate_devilery = estimate_devilery  + timedelta(1)
            self.estimate_arrival=estimate_devilery
-
-
     
     def __str__(self):
         return f" Delivery cost is{self.cost} and date {self.estimate_arrival}"
@@ -74,7 +83,7 @@ standard = Delivery_Type(10)
 standard.set_estimate_delivery(5)
 express = Delivery_Type(20)
 express.set_estimate_delivery(1)
-
+ 
 delivery_types={
   "free":free,
   "standard":standard,
