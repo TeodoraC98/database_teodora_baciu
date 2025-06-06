@@ -1140,13 +1140,15 @@ z-index: 1;
   max-height: 15rem;
   filter: brightness(.95);
 }
-.gallery__invoice-item li{
+.gallery__invoice-item li, 
+.gallary_item{
   position: relative;
 }
-.gallery__invoice-item li div{
+.gallery__invoice-item li div, 
+.gallary_item div{
   position: absolute;
-  bottom:8px;
-  right: 8px;
+  left: 10px;
+  top: 10px;
   z-index: 1;
   font-family: var(--font-family-subtitle);
   font-size: larger;

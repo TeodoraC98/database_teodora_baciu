@@ -1,12 +1,14 @@
 
- Render link: https://mala-teodora-database.onrender.com
- GITHUB: https://github.com/TeodoraC98/database_teodora_baciu.git
+Render link: https://mala-teodora-database.onrender.com
+GITHUB: https://github.com/TeodoraC98/database_teodora_baciu.git
 Database name: database_project_teodora
 Internal URL: postgresql://project_teodora:54qKvCbQ2mBy5UKIQeSXL8X775agHdBl@dpg-d0tcsh6mcj7s73dfdm7g-a/database_project_teodora
 External URL: postgresql://project_teodora:54qKvCbQ2mBy5UKIQeSXL8X775agHdBl@dpg-d0tcsh6mcj7s73dfdm7g-a.oregon-postgres.render.com/database_project_teodora
 hostname: dpg-d0tcsh6mcj7s73dfdm7g-a
 password: 54qKvCbQ2mBy5UKIQeSXL8X775agHdBl
-
+For a full understanding of  the page functionality , you can use the account with:
+Email address: teodorabaciu@yahoo.com
+Password: teodorabaciu
 
 
 WEBSITE PRESENTATION

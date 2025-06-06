@@ -10,6 +10,7 @@ from flask_login import login_required, current_user
 from datetime import datetime,timezone,timedelta
 import stripe
 checkout_bp = Blueprint('checkout',__name__,template_folder='templates/checkout')
+#  I use a dictionary to easily manipulate invoice, payment, and address objects
 order = {
    
 }
@@ -38,13 +39,14 @@ def get_shipping_information():
         address=Address_Shipping(street,city,county,postcode,arrival_date,cost)
         session['total_cart'] = session['total_cart'] + float(cost)
         order['address'] = address
+        #after saving the information for address the user is redirected to the payment page
         return render_template('payment.html',delivery = order['address'])
       else:
         return render_template("shipping.html",form_address=form_address, delivery_types = delivery_types)
       
 
- 
-      
+
+# I use Stripe to make the payment
 @checkout_bp.route('/checkout/payment', methods=['POST', 'GET'])
 def get_payment_information():  
    if request.method=='GET':
@@ -68,17 +70,23 @@ def get_payment_information():
         ],
         payment_method_types=['card'],
         mode='payment',
+      #   if the payment is made, the user is redirected to the Success page
+      #  if the payment is fail the user is redirected to the cancel page
         success_url=request.host_url + 'order/success',
         cancel_url=request.host_url + 'order/cancel',
     )
+   # Payment is the last step in the order checkout process
+   # At this point I insert the address and the payment into the database and 
    order['payment'] = insert_payment()
    Address_Shipping.insert_address(order['address'])
+   # I create the invoice for the order
    invoice = create_invoice()
    return redirect(checkout_session.url)
 
 @checkout_bp.route('/order/success')
 def success():
     try:
+      # I update the status of the payment from pending to success
       Payment.update_status_db(order['payment'] ,"success")
       Invoice.update_status_db(order['invoice'],"success")
       session.clear()
@@ -89,6 +97,7 @@ def success():
 
 @checkout_bp.route('/order/cancel')
 def cancel():
+     # I update the status of the payment from pending to cancel
     Payment.update_status_db(order['payment'] ,"cancel")
     Invoice.update_status_db(order['invoice'],'cancel')
     return render_template('cancel.html', invoice = order['invoice'])
@@ -110,9 +119,11 @@ def create_invoice():
    order['invoice'] = invoice
    if is_insert:
       current_user.invoices.append(invoice)
+      # after creating the invoice I insert the items of the cart into database 
       insert_items_order()
+       # after creating the invoice I insert the Invoice_Details data into db
+      #  i use Invoice_Details for an easy access to payment, address and invoice 
       create_invoice_details(order['payment'], order['address'],invoice)
-
    return invoice
 
    
@@ -125,6 +136,8 @@ def insert_items_order():
       quantity=session['shopping_cart'][key]['quantity']
       item_order=Item_Order(quantity,id_product,invoice.id)
       item_order.insert_item_db()
+      # the relationship between invoice and item order
+      # an invoice has a list of items
       invoice.items.append(item_order)
    except Exception as e:
       print(e)

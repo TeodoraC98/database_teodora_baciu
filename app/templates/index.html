@@ -96,3 +96,10 @@
  </div>
 
 {% endblock %}
+{% block scripts %}
+  <script src="{{url_for('static',filename='js/carousel.js')}}"></script>
+  <script src="{{url_for('static',filename='js/show_nav.js')}}"></script>
+  <script src="{{url_for('static',filename='js/activateScrollHeader.js')}}"></script>
+  <script src="{{url_for('static',filename='js/gallarySuggestion.js')}}"></script>
+{% endblock %}
+   
