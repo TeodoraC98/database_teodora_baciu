@@ -27,16 +27,15 @@ def get_delivery_day(delivery_type):
 def get_shipping_information():  
       form_address = AddressForm(request.form)
       if request.method == 'POST' and form_address.validate():
-        street=form_address.street.data
-        city=form_address.city.data
-        county=form_address.county.data
-        postcode=form_address.postcode.data
-        delivery_type_selected=form_address['cost'].data
-        delivery=delivery_types[delivery_type_selected]
-        cost=delivery.cost
+        street = form_address.street.data
+        city = form_address.city.data
+        county = form_address.county.data
+        postcode = form_address.postcode.data
+        delivery_type_selected = form_address['cost'].data
+        delivery = delivery_types[delivery_type_selected]
+        cost = delivery.cost
         arrival_date=delivery.estimate_arrival
         address=Address_Shipping(street,city,county,postcode,arrival_date,cost)
-        address.insert_address()
         session['total_cart'] = session['total_cart'] + float(cost)
         order['address'] = address
         return render_template('payment.html',delivery = order['address'])
@@ -73,6 +72,7 @@ def get_payment_information():
         cancel_url=request.host_url + 'order/cancel',
     )
    order['payment'] = insert_payment()
+   Address_Shipping.insert_address(order['address'])
    invoice = create_invoice()
    return redirect(checkout_session.url)
 

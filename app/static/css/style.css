@@ -469,6 +469,24 @@ cursor: pointer;
 margin-block: 0.25rem;
 transform: scale(1.1);
 } 
+.container_section-intro{
+  display:flex ;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.container__intro{
+  /* margin: auto; */
+  /* border:2px solid red; */
+  max-width: 45rem;
+  min-width: 10rem;
+   
+}
+.container__intro h5{
+ font-size: var(--font-size-regular);
+ color: var(--light-gray);
+ padding: 0.5rem 0.75rem;
+ font-family: var(--font-family-subtitle);
+}
 /* =======================FOOTER================== */
 footer{
   min-height: 25vh;
@@ -663,7 +681,7 @@ footer h4{
   gap: 1rem;
 
 }
-.wrapper_img-product{
+.wrapper_img-product,.wrapper_img{
   /* border:2px solid red; */
   max-width: 40rem;
   width: clamp(75%,calc(34vw + 1rem),39vw);
