@@ -10,18 +10,17 @@
 </section>
 <section class="container_section">
     <div>For more information about your order, please select the order number!</div>
-<div class="subtitle">Your orders!</div>
+      <div class="subtitle">Your orders!</div>
     {%for invoice in list_invoices %}
    <div>
   <a href="{{url_for('orders.get_invoice_by_order_number', order_number = invoice.order_number)}}">
-    {{invoice.order_number}}
 
   </a>
       </table>
-         <div>
+         <div class="wrp__invoice-tb">
       <table class="tb_smr-order item_order-tb">
         <caption class="subtitle">
-            <a href="{{url_for('orders.get_invoice_by_order_number', order_number = invoice.order_number)}}">
+            <a class="ord_nr-link" href="{{url_for('orders.get_invoice_by_order_number', order_number = invoice.order_number)}}">
              Order number -> {{invoice.order_number}}
             </a>
         </caption>

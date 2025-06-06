@@ -26,7 +26,7 @@
   --z-fixed: 100;
 }
 * {
-  /* border:1px solid red; */
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -45,10 +45,8 @@
   position: relative;
   z-index: 10;
 }
-.header__scrolled{
-  color: var(--dark-gray);
-  background-color: var(--color-white);
-}
+
+
 body {
   font-size:var(--font-size-regular);
   min-height: 100vh;
@@ -72,15 +70,21 @@ input[type='submit']{
 .btn_submit{
   padding: 1rem;
   display: block;
-  margin-block: 1rem;
   width: 100%;
-  max-width: 40rem;
+  max-width: 35rem;
   background-color: var(--light-violet);
   box-shadow: 3px 3px 2px 1px var(--dark-gray);
   border: none;
   border-radius: 10px;
   color: var(--gray);
   cursor: pointer;
+  padding: 1rem;
+  margin-top: 1;
+  margin-inline: auto;
+}
+.wrapper_inp .btn_submit{
+  width: 92%;
+  margin: 0;
 }
 .btn_submit:hover{
   color: var(--lighter-gray);
@@ -112,7 +116,15 @@ input[type='submit']{
 }
 .container__nav {
   width: 100%;
+  z-index: var(--z--tooltip);
+  background-color: var(--color-white);
+  box-shadow: 4px 4px 2px var(--lighter-gray);
   position: fixed;
+}
+.nav__scrolled{
+  color: var(--dark-gray);
+  background-color: transparent;
+  box-shadow: none;
 }
 .container__nav:hover {
   background-color: white;
@@ -123,7 +135,7 @@ input[type='submit']{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: var(--z-fixed);
+  z-index: var(--z--tooltip);
   /* background-color: red; */
 }
 .company_logo{
@@ -146,7 +158,6 @@ margin-inline:15%;
 .data__menu-right,
 .data__menu-left {
   height: 100%;
-  /* border: 4px solid rgb(0, 238, 255); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -164,12 +175,10 @@ margin-inline:15%;
   color: var(--light-gray);
 }
 .nav__menu-left {
-  /* border: 4px solid rgb(94, 255, 0); */
   min-width: 4rem;
 }
 .nav__toggle {
   display: none;
-  /* border: 4px solid rgb(11, 20, 153); */
   height: 100%;
   font-size: 1.45rem;
   color:var(--dark-gray);
@@ -182,12 +191,10 @@ margin-inline:15%;
   font-size: 2rem;
 }
 .data__menu-left li {
-  /* border: 2px solid rgb(187, 92, 100); */
   height: 100%;
   align-content: center;
 }
 .menu_left-products {
-  /* border: 2px solid rgb(93, 228, 15); */
   display: block;
   height: 100%;
   cursor: pointer;
@@ -199,7 +206,6 @@ margin-inline:15%;
   opacity: 1;
 }
 .container__menu-products {
-  border: 2px solid rgb(228, 83, 15);
   background-color: white;
   width: 100%;
   min-height: 30rem;
@@ -220,7 +226,6 @@ margin-inline:15%;
 
 .product__item {
   margin-inline: auto;
-  /* border: 2px solid red; */
   cursor: pointer;
   justify-self: start;
   min-width: 10rem;
@@ -477,7 +482,7 @@ footer a{
     color: var(--lighter-gray);
     padding: 2px .5rem;
 }
-footer a:visited{
+footer a:visited, footer a:link {
     color: var(--lighter-gray);
 }
 footer a:hover{
@@ -535,6 +540,11 @@ footer h4{
   padding: 0.25rem;
  }
 /* create  main content */
+/* =============product page================ */
+.desc__category{
+  padding-block: 2rem;
+  text-align: center;
+}
 .container_products{
   padding: .5rem;
   display: flex;
@@ -641,7 +651,6 @@ footer h4{
 } 
 /* design product page */
 .container_display-product{
-  border:2px solid red;
   margin-inline: auto;
   margin-top: 10vh;
   min-height: 50vh;
@@ -658,9 +667,7 @@ footer h4{
   /* border:2px solid red; */
   max-width: 40rem;
   width: clamp(75%,calc(34vw + 1rem),39vw);
-  border:2px solid rgb(26, 223, 26);
   & img{
-      border:2px solid red;
    width: 100%;
    height: 100%;
    filter: brightness(0.95);
@@ -671,7 +678,7 @@ footer h4{
   flex-direction: column;
   flex-grow: 1;
   max-width: 40rem;
-  border-left:6px double var(--dark-violet);
+  border-left:6px double var(--light-violet);
   padding: 3rem 2rem;
 }
 .wrapper_info-product  > div{
@@ -790,9 +797,12 @@ min-width: 17rem;
 .tb_smr-order{
   font-family:var(--font-family-subtitle);
     width: 100%;
+    max-width: 50rem;
+    min-width: 20rem;
     border:2px solid var(--gray);
     border-collapse: collapse;
     margin-block: 1rem;
+    margin-inline: auto;
 }
 .tb_smr-order td{
   border-bottom: 1px solid var(--gray);
@@ -800,6 +810,12 @@ min-width: 17rem;
   color: #340e42;
   padding: 1.12rem 1rem;
   background-color: var(--lighter-gray);
+}
+.tb_smr-order a{
+  color: var(--light-gray);
+}
+.wrp__invoice-tb{
+ margin-block: 5rem;
 }
 /* --------------EMPY CART---------------------- */
 .section__empty-cart{
@@ -858,7 +874,6 @@ min-width: 17rem;
 .frm_container{
   opacity: 0;
   display: flex;
-  border:2px solid rgb(16, 13, 192);
   justify-content: start;
   flex-direction: column;
   gap:0.751rem;
@@ -1004,8 +1019,7 @@ z-index: 1;
 
 .wrapp_btn {
   min-width: 18rem;
-  max-width: max(calc(70% + 1rem), 15rem);
-  border:2px solid rgb(112, 81, 112);
+  max-width: max(calc(70% + 1rem), 15rem);;
   background-color: var(--violet);
   border-radius: 10px;
   border:none;
@@ -1040,10 +1054,11 @@ z-index: 1;
  flex-direction: column;
  margin-inline: auto;
   }
+
   .tb_delivery-data{
   font-family:var(--font-family-subtitle);
     width: 100%;
-    max-width: 40rem;
+    max-width: 50rem;
     border:2px solid var(--gray);
     border-collapse: collapse;
 }
@@ -1056,7 +1071,7 @@ z-index: 1;
   }
   .container_payment-inf .tb_smr-order{
     margin: 1rem 0;
-     max-width: 40rem;
+     max-width: 50rem;
   }
 /*-------------------- design delivery information page--------------------- */
 .frm{
@@ -1097,6 +1112,7 @@ z-index: 1;
 }
 /* ---------------------INVOICE PAGE -------------------------------- */
 .gallery__invoice-item{
+
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
@@ -1106,7 +1122,32 @@ z-index: 1;
   max-height: 15rem;
   filter: brightness(.95);
 }
+.gallery__invoice-item li{
+  position: relative;
+}
+.gallery__invoice-item li div{
+  position: absolute;
+  bottom:8px;
+  right: 8px;
+  z-index: 1;
+  font-family: var(--font-family-subtitle);
+  font-size: larger;
+}
 
+/* ========================== success placed orderd==================== */
+.container__success-order,
+.container__cancel-order{
+  font-family: var(--font-family-subtitle);
+  text-align: center;
+  min-height: 45vh;
+  width: 75%;
+  margin: auto;
+  padding-top: 3rem; 
+  & i, a {
+    font-weight: var(--font-semi-bold);
+    color: var(--dark-gray);
+  }
+}
 
 
 /* design for mediun device */
@@ -1247,6 +1288,7 @@ z-index: 1;
     padding: 1rem 0.5rem;
     margin: 0;
   }
+ 
   .container_shipping-inf{
     width: 90%;
   }

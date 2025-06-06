@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>SUCCESS</h1>
+<div class="container__success-order">
+   <h3 class="subtitle">Your order has been successfully placed.</h3>
+   Thank you for choosing Mala and I hope we will see you again soon!
+    For more details about the order, please visit the link below 
+    <i><a href="{{url_for('orders.get_invoice_by_order_number', order_number = invoice.order_number)}}">
+         {{ invoice.order_number }}
+        </a>
+    </i>
+</div>
 {% endblock %}

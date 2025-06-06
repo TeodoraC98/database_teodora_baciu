@@ -1,8 +1,15 @@
 {% extends "base.html" %} 
 
  {% block content %} 
-<main>
+<main class="main">
+    <section class="container_section"> 
+         <h4 class="subtitle"> {{ category.category_name}}</h4>
+      <div class="desc__category">
+      {{category.description}}
+     </div>
+   </section>
     <div class="container_products">
+    
     {% for item in bags %}
   
    <div class="wrapper_product-item">
@@ -10,18 +17,6 @@
       <a href="{{url_for('products.get_product_by_name',name = item.name)}}">
        <img src="{{url_for('static',filename = item.img_url )}}" alt=" image {{item.name}} bag">
       </a>
-         <div class="add-cart">
-               <form action="/cart/add_item" method=post>
-                  <input type="hidden" value="{{item.id}}" name="id_item">
-                  <input type="hidden" value="{{item.name}}" name="name_item">
-                  <input type="hidden" value="{{item.img_url}}" name="urlImg_item">
-                  <input type="hidden" value="{{item.price}}" name="price_item">
-                  <input type="hidden" value="1" name="quantity">
-                  <input type="hidden" value="2" name="ceva">
-                  <input type="submit" value="Buy">
-               </form>
-              
-          </div> 
       </div>
       <div class="item_name">{{item.description}}</div> 
       

@@ -10,7 +10,8 @@ def get_products_by_type(type):
     category = Category_Product.get_category(type)
     # access the products of a specific category
     bags = category.products
-    return render_template("products.html",bags=bags)
+    category.category_name=category.category_name.upper()
+    return render_template("products.html", bags = bags, category = category)
 
 @products_bp.route('/product/<string:name>')
 def get_product_by_name(name):

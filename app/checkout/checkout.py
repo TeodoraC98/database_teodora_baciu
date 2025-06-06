@@ -73,22 +73,25 @@ def get_payment_information():
         cancel_url=request.host_url + 'order/cancel',
     )
    order['payment'] = insert_payment()
-   create_invoice()
+   invoice = create_invoice()
    return redirect(checkout_session.url)
 
 @checkout_bp.route('/order/success')
 def success():
-    Payment.update_status_db(order['payment'] ,"success")
-    Invoice.update_status_db(order['invoice'],"success")
-    session.clear()
-    return render_template('success.html')
+    try:
+      Payment.update_status_db(order['payment'] ,"success")
+      Invoice.update_status_db(order['invoice'],"success")
+      session.clear()
+      return render_template('success.html',invoice = order['invoice'])
+    except Exception as e:
+       print(e)
 
 
 @checkout_bp.route('/order/cancel')
 def cancel():
     Payment.update_status_db(order['payment'] ,"cancel")
     Invoice.update_status_db(order['invoice'],'cancel')
-    return render_template('cancel.html')
+    return render_template('cancel.html', invoice = order['invoice'])
 
 def insert_payment():
    amount = session['total_cart']
@@ -109,8 +112,9 @@ def create_invoice():
       current_user.invoices.append(invoice)
       insert_items_order()
       create_invoice_details(order['payment'], order['address'],invoice)
-   # else:
-      # "what do i need to do now?"
+
+   return invoice
+
    
    
 def insert_items_order():

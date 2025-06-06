@@ -43,16 +43,10 @@
             {{ formReg.accept_term(class="create_acc-inp frm_inp") }}
             {{  formReg.accept_term.label(class="lb_cb_term")}}
             </div>
-            <div>
-              {{ formReg.submit(class="wrapp_btn")}}
+            <div class="wrapper_inp">
+              {{ formReg.submit(class="btn_submit")}}
             </div>
-            <!-- {% with messages = get_flashed_messages() %}
-            {% if messages %} 
-            <ul> {% for message in messages %}
-           <li>{{ message }}</li> 
-           {% endfor %} 
-             </ul> 
-            {% endif %} {% endwith %} -->
+  
            </form>
         <form class="frm_container {{ class_frm_log }}" id="frm_log-in" action="" method="post" >
             <div class="wrapper_inp">
@@ -65,16 +59,9 @@
                 {{  formLogin.password.label( class="lb_inp") }}
                 <i class="ri-error-warning-line err_date-validation"></i>
               </div>
-              <!-- {% with messages = get_flashed_messages() %}
-              {% if messages %} 
-              <ul> {% for message in messages %}
-             <li>{{ message }}</li> 
-             {% endfor %} 
-               </ul> 
-              {% endif %} {% endwith %} -->
-              
+               <div class="wrapper_inp">
                 {{  formLogin.submit(class="btn_submit") }}
-        
+               </div>
         </form>
         </div>
         </div>
