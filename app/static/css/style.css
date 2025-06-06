@@ -777,6 +777,7 @@ justify-content: space-evenly;
 
 .itm_crt-img img{
  height: 90%;
+ max-height: 8rem;
  width: 100%;
  filter: brightness(.95);
 
@@ -784,7 +785,7 @@ justify-content: space-evenly;
 .itm_crt-name{
   grid-column: 2/3;
   grid-row:1/2;
- 
+
 }
 .itm_crt-price{
   grid-column: 2/4;

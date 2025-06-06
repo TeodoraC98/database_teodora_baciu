@@ -7,8 +7,11 @@ from app.models.products import Product, Category_Product
 products_bp=Blueprint('products',__name__,template_folder='templates/products')
 @products_bp.route('/products/<string:type>')
 def get_products_by_type(type):
+    type= type.upper()
+    print(type)
     category = Category_Product.get_category(type)
     # access the products of a specific category
+    print(category)
     bags = category.products
     category.category_name=category.category_name.upper()
     return render_template("products.html", bags = bags, category = category)
